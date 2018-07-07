@@ -8,14 +8,23 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { ProductListComponent } from './product-list.component';
+import { ProductDetailComponent } from './product-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+// определение маршрутов
+var appRoutes = [
+    { path: '', component: ProductListComponent },
+    { path: 'product/:id', component: ProductDetailComponent },
+    { path: '**', redirectTo: '/' }
+];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         NgModule({
-            imports: [BrowserModule, FormsModule, HttpClientModule],
-            declarations: [AppComponent],
+            imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
+            declarations: [AppComponent, ProductListComponent, ProductDetailComponent],
             bootstrap: [AppComponent]
         })
     ], AppModule);
