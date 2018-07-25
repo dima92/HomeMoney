@@ -1,7 +1,7 @@
 ﻿import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
+import { AuthModule } from "./app/auth/auth.module";
 const platform = platformBrowserDynamic();
-platform.bootstrapModule(AppModule);
+platform.bootstrapModule(AuthModule);
 
 // для перезагузки приложения при изменениях в исходном коде
 if (module.hot) {

@@ -1,5 +1,4 @@
-﻿using HomeMoney.MODEL;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +10,8 @@ namespace HomeMoney
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=productsdb;Trusted_Connection=True;";
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=productsdb1;Trusted_Connection=True;";
+            services.AddDbContext<DbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddMvc();
         }

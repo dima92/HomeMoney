@@ -5,17 +5,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Component } from '@angular/core';
-var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+var RegistrationComponent = /** @class */ (function () {
+    function RegistrationComponent() {
     }
-    AppComponent = __decorate([
+    RegistrationComponent.prototype.ngOnInit = function () {
+        throw new Error("Method not implemented.");
+    };
+    RegistrationComponent = __decorate([
         Component({
-            selector: 'app-root',
-            templateUrl: './app.component.html',
-            styleUrls: ['./app.component.css']
+            selector: 'app-registration',
+            templateUrl: './registration.component.html',
+            styleUrls: ['./registration.component.css'],
         })
-    ], AppComponent);
-    return AppComponent;
+    ], RegistrationComponent);
+    return RegistrationComponent;
 }());
-export { AppComponent };
-//# sourceMappingURL=app.component.js.map
+export { RegistrationComponent };
+//# sourceMappingURL=registration.component.js.map
