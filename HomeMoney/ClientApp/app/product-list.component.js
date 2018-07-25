@@ -22,9 +22,10 @@ var ProductListComponent = /** @class */ (function () {
             templateUrl: './product-list.component.html',
             providers: [DataService]
         }),
-        __metadata("design:paramtypes", [DataService])
+        __metadata("design:paramtypes", [typeof (_a = typeof DataService !== "undefined" && DataService) === "function" && _a || Object])
     ], ProductListComponent);
     return ProductListComponent;
+    var _a;
 }());
 export { ProductListComponent };
 //# sourceMappingURL=product-list.component.js.map

@@ -27,9 +27,10 @@ var ProductDetailComponent = /** @class */ (function () {
             templateUrl: './product-detail.component.html',
             providers: [DataService]
         }),
-        __metadata("design:paramtypes", [DataService, ActivatedRoute])
+        __metadata("design:paramtypes", [typeof (_a = typeof DataService !== "undefined" && DataService) === "function" && _a || Object, ActivatedRoute])
     ], ProductDetailComponent);
     return ProductDetailComponent;
+    var _a;
 }());
 export { ProductDetailComponent };
 //# sourceMappingURL=product-detail.component.js.map
