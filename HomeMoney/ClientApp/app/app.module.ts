@@ -1,11 +1,25 @@
-﻿import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+﻿import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
+import { AppRoutingModule } from './app-routing.module';
+
+
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpClientModule ],
-    declarations: [ AppComponent ],
-    bootstrap:    [ AppComponent ]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpModule,
+        AuthModule,
+        AppRoutingModule,
+        BrowserAnimationsModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
