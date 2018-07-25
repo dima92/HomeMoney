@@ -1,9 +1,12 @@
-﻿<div *ngIf="loaded">
-    <h2>Модель {{product.id}}</h2>
+﻿<h3>Регистрация</h3>
+<div>
     <div>
-        <p><b>Модель:</b> {{product.name}}</p>
-        <p><b>Производитель:</b> {{product.company}}</p>
-        <p><b>Цена:</b> {{product.price}}</p>
-        <p><a routerLink="/" class="nav-link">К списку моделей</a></p>
+        <label>Введите email</label>
+        <input type="email"/>
+    </div>
+    <div>
+        <label>Введите пароль</label>
+        <input type="text" />
     </div>
 </div>
+<button>Отправить</button>

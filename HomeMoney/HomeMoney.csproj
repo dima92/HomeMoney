@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\login\" />
+    <Folder Include="wwwroot\dist\" />
   </ItemGroup>
 
 </Project>

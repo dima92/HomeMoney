@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
 // определение маршрутов
 var appRoutes = [
     { path: '', component: ProductListComponent },
-    { path: 'product/:id', component: ProductDetailComponent },
+    { path: 'index/:id', component: ProductDetailComponent },
     { path: '**', redirectTo: '/' }
 ];
 var AppModule = /** @class */ (function () {
