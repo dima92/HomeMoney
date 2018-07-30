@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    debugger;
     const formData = this.form.value;
   }
 

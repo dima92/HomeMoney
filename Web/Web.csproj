@@ -24,6 +24,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\auth\login\login.component.js" />
+    <None Remove="ClientApp\src\app\auth\login\login.component.js" />
+    <None Remove="ClientApp\src\app\auth\login\login.component.js.map" />
+    <None Remove="ClientApp\src\app\auth\login\login.component.js.map" />
+    <None Remove="ClientApp\src\app\auth\registration\registration.component.js" />
+    <None Remove="ClientApp\src\app\auth\registration\registration.component.js" />
+    <None Remove="ClientApp\src\app\auth\registration\registration.component.js.map" />
+    <None Remove="ClientApp\src\app\auth\registration\registration.component.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\auth\" />
   </ItemGroup>
 
