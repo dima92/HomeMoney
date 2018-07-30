@@ -24,7 +24,9 @@
             ],
             "styles": [
               "src/styles.css",
-              "../ClientApp/node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "../ClientApp/node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/theme.css",
+              "src/assets/vendor.css"
             ],
             "scripts": []
           },
