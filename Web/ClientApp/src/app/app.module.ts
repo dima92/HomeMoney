@@ -1,16 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
+import { AuthModule } from './auth/auth.module';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import {LoginComponent} from "./auth/login/login.component"
-import { RegistrationComponent } from './auth/registration/registration.component';
+import { HomeComponent } from './home/home.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+
+
 
 @NgModule({
   declarations: [
@@ -18,21 +18,18 @@ import { RegistrationComponent } from './auth/registration/registration.componen
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent,
-    LoginComponent,
-    RegistrationComponent,
+    FetchDataComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+	    AuthModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'registration', component: RegistrationComponent}
+      { path: 'fetch-data', component: FetchDataComponent }
     ])
   ],
   providers: [],
