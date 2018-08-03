@@ -32,10 +32,17 @@
     <None Remove="ClientApp\src\app\auth\registration\registration.component.js" />
     <None Remove="ClientApp\src\app\auth\registration\registration.component.js.map" />
     <None Remove="ClientApp\src\app\auth\registration\registration.component.js.map" />
+    <None Remove="ClientApp\src\app\models\message.ts" />
+    <None Remove="ClientApp\src\app\models\user.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\auth\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\message.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\user.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
