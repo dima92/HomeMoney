@@ -20,8 +20,13 @@ export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
 
+export function autorizUrl() {
+  return "http://localhost:1669/";
+}
+
 const providers = [
-  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
+  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] },
+  { provide: 'AUTORIZ_URL', useFactory: autorizUrl, deps: [] }
 ];
 
 if (environment.production) {

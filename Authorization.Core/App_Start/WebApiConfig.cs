@@ -12,19 +12,28 @@ namespace Authorization.Core
     {
         public static void Register(HttpConfiguration config)
         {
-            // Конфигурация и службы Web API
-            // Настройка Web API для использования только проверки подлинности посредством маркера-носителя.
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            config.EnableCors();
+            // Web API configuration and services
+            //config.EnsureInitialized();
 
-            // Маршруты Web API
+
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+            config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.None;
+
+           // config.DependencyResolver = new DependenciesRegistry.UnityResolver(DependenciesRegistry.RegisterComponents());
+
+            //config.ParameterBindingRules.Insert(0, MultiPostParameterBinding.CreateBindingForMarkedParameters);
+
+            // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
         }
     }
 }

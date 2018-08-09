@@ -23,7 +23,10 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute) {
   }
 
+  
+
   ngOnInit() {
+    debugger;
     this.message = new Message('danger', '');
 
     this.route.queryParams
@@ -53,26 +56,31 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const formData = this.form.value;
 
-    this.usersService.getUserByEmail(formData.email)
+    this.usersService.getUserByEmail(formData)
       .subscribe((user: User) => {
-        if (user) {
-          if (user.password === formData.password) {
-            this.message.text = '';
-            window.localStorage.setItem('user', JSON.stringify(user));
-            this.authService.login();
-            // this.router.navigate(['']);
-          } else {
-            this.showMessage({
-              text: 'Пароль не верный',
-              type: 'danger'
-            });
-          }
-        } else {
-          this.showMessage({
-            text: 'Такого пользователя не существует',
-            type: 'danger'
-          });
-        }
+        //this.showMessage({
+        //      text: 'Регистрация прошла успешно',
+        //      type: 'danger'
+        //    });
+
+        //if (user) {
+        //  if (user.password === formData.password) {
+        //    this.message.text = '';
+        //    window.localStorage.setItem('user', JSON.stringify(user));
+        //    this.authService.login();
+        //    // this.router.navigate(['']);
+        //  } else {
+        //    this.showMessage({
+        //      text: 'Пароль не верный',
+        //      type: 'danger'
+        //    });
+        //  }
+        //} else {
+        //  this.showMessage({
+        //    text: 'Такого пользователя не существует',
+        //    type: 'danger'
+        //  });
+        //}
       });
   }
 
