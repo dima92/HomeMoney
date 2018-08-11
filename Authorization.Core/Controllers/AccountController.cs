@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
+using System.Web.Http.Cors;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -19,6 +19,8 @@ using Authorization.Core.Results;
 
 namespace Authorization.Core.Controllers
 {
+    // CORS
+    [EnableCors(origins: "https://localhost:44346", headers: "*", methods: "*", SupportsCredentials = true)]
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -329,16 +331,30 @@ namespace Authorization.Core.Controllers
                 return BadRequest(ModelState);
             }
 
-            //var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = await UserManager.FindAsync(model.Email, model.Password);
+            if (user == null)
+            { // user auth failed
+                ModelState.AddModelError("errorLogin", "Invalid email or password");
+                return BadRequest(ModelState);
+            }
 
-            //IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            //if (!result.Succeeded)
-            //{
-            //    return GetErrorResult(result);
+            //if (user.Locking == false)
+            //{ // user auth failed
+            //    ModelState.AddModelError("errorLogin", "Данный ресурс для вас заблокирован по решению органов государственной власти!!!");
+            //    return BadRequest(ModelState);
             //}
+            await SignInAsync(user, true);
+            user.IsRegisrer = true;
+            return Ok(user);
+        }
 
-            return Ok();
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        {
+            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            var identity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType);
+            Authentication.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity
+
+            );
         }
 
         // POST api/Account/Register
@@ -350,17 +366,18 @@ namespace Authorization.Core.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+           
+            ApplicationUser user = new ApplicationUser() { Name = model.Name, Email = model.email,UserName = model.Name};
+          
+            IdentityResult result = await UserManager.CreateAsync(user, model.password);
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
 
-            return Ok();
+            user.IsRegisrer = true;
+            return Ok(user);
         }
 
         // POST api/Account/RegisterExternal
@@ -427,7 +444,7 @@ namespace Authorization.Core.Controllers
                 {
                     foreach (string error in result.Errors)
                     {
-                        ModelState.AddModelError("", error);
+                        ModelState.AddModelError("error", error);
                     }
                 }
 

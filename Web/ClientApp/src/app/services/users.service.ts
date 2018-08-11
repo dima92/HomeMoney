@@ -16,23 +16,21 @@ export class UsersService {
   }
 
   getUserByEmail(formData: any) {
+    let model = formData;
     debugger;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     const options = { headers: headers };
-    return this.http.post(this.autorizUrl + 'api/SampleData/WeatherForecasts', options)
+    return this.http.post(this.autorizUrl + "/api/Account/LogIn", model, options)
       .pipe(map(((httpResponse: any) => httpResponse)));
   }
 
-  //addResponsibilityCenter(dataItem: any) {
-  //  let data = dataItem;
-  //  const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
-  //  const options = { headers: headers };
-  //  return this.http.post(this.p03940Url + "/api/responsibilityCenter/add", data, options)
-  //    .pipe((httpResponse: any) => httpResponse)
-  //    .catch(error => this.globalAppService.handleError(error));
-  //}
-  //createNewUser(user: User): Observable<User> {
-  //  return this.http.post('http://localhost:14907/users', user)
-  //    .pipe(map((response: Response) => response.json()));
-  //}
+  register(dataItem: any) {
+    let model = dataItem;
+    debugger;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    const options = { headers: headers };
+    return this.http.post(this.autorizUrl + 'api/Account/Register',model, options)
+      .pipe(map(((httpResponse: any) => httpResponse)));
+  }
+
 }

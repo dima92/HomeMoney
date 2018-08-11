@@ -57,31 +57,43 @@ export class LoginComponent implements OnInit {
     const formData = this.form.value;
 
     this.usersService.getUserByEmail(formData)
-      .subscribe((user: User) => {
-        //this.showMessage({
-        //      text: 'Регистрация прошла успешно',
-        //      type: 'danger'
-        //    });
+      .subscribe((user: any) => {
+          if (user.IsRegisrer) {
+            this.router.navigate(['']);
+            // this.showMessage({
+            alert(user.Name + ' вы успешно авторизованы :)');
+            //  type: 'danger'
+            // });
+          }
 
-        //if (user) {
-        //  if (user.password === formData.password) {
-        //    this.message.text = '';
-        //    window.localStorage.setItem('user', JSON.stringify(user));
-        //    this.authService.login();
-        //    // this.router.navigate(['']);
-        //  } else {
-        //    this.showMessage({
-        //      text: 'Пароль не верный',
-        //      type: 'danger'
-        //    });
-        //  }
-        //} else {
-        //  this.showMessage({
-        //    text: 'Такого пользователя не существует',
-        //    type: 'danger'
-        //  });
-        //}
-      });
+
+          //if (user) {
+          //  if (user.password === formData.password) {
+          //    this.message.text = '';
+          //    window.localStorage.setItem('user', JSON.stringify(user));
+          //    this.authService.login();
+          //    // this.router.navigate(['']);
+          //  } else {
+          //    this.showMessage({
+          //      text: 'Пароль не верный',
+          //      type: 'danger'
+          //    });
+          //  }
+          //} else {
+          //  this.showMessage({
+          //    text: 'Такого пользователя не существует',
+          //    type: 'danger'
+          //  });
+          //}
+        },
+        error => {
+          alert(error.error.Message);
+          for (var i = 0; i < error.error.ModelState.errorLogin.length; i++) {
+            alert(error.error.ModelState.errorLogin[i]);
+          }
+          
+        });
+
   }
 
 }
