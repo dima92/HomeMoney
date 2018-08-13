@@ -11,6 +11,8 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from "./auth/login/login.component"
 import { RegistrationComponent } from './auth/registration/registration.component';
+import { LoaderComponent } from "./components/loader/loader.component";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
 
 import { AuthService } from "./services/auth.service"
 import { UsersService } from "./services/users.service"
@@ -23,7 +25,10 @@ import { UsersService } from "./services/users.service"
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoaderComponent,
+    NotFoundComponent 
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
