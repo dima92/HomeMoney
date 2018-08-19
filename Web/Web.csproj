@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
   </ItemGroup>
 
@@ -32,6 +32,10 @@
     <None Remove="ClientApp\src\app\auth\registration\registration.component.js" />
     <None Remove="ClientApp\src\app\auth\registration\registration.component.js.map" />
     <None Remove="ClientApp\src\app\auth\registration\registration.component.js.map" />
+    <None Remove="ClientApp\src\app\components\header\header.component.ts" />
+    <None Remove="ClientApp\src\app\models\bill.model.ts" />
+    <None Remove="ClientApp\src\app\models\category.model.ts" />
+    <None Remove="ClientApp\src\app\models\event.model.ts" />
     <None Remove="ClientApp\src\app\models\message.ts" />
     <None Remove="ClientApp\src\app\models\user.model.ts" />
     <None Remove="webpack.config.js" />
@@ -46,6 +50,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\components\header\header.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\bill.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\category.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\event.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\message.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\user.model.ts" />
   </ItemGroup>

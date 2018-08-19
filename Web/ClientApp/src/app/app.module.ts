@@ -13,6 +13,7 @@ import { LoginComponent } from "./auth/login/login.component"
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { LoaderComponent } from "./components/loader/loader.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { HeaderComponent } from "./components/header/header.component";
 
 import { AuthService } from "./services/auth.service"
 import { UsersService } from "./services/users.service"
@@ -27,7 +28,8 @@ import { UsersService } from "./services/users.service"
     LoginComponent,
     RegistrationComponent,
     LoaderComponent,
-    NotFoundComponent 
+    NotFoundComponent,
+    HeaderComponent
 
   ],
   imports: [
