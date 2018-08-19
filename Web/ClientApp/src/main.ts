@@ -21,7 +21,8 @@ export function getBaseUrl() {
 }
 
 export function autorizUrl() {
-  return "http://localhost:1669/";
+  return "http://localhost:1669/"; // debug
+  //return "http://localhost:85/"; // server
 }
 
 const providers = [

@@ -57,11 +57,11 @@ export class LoginComponent implements OnInit {
     const formData = this.form.value;
 
     this.usersService.getUserByEmail(formData)
-      .subscribe((user: any) => {
-          if (user.IsRegisrer) {
+      .subscribe((toren: any) => {
+          if (toren!== null) {
             this.router.navigate(['']);
             // this.showMessage({
-            alert(user.Name + ' вы успешно авторизованы :)');
+           // alert(user.Name + ' вы успешно авторизованы :)');
             //  type: 'danger'
             // });
           }

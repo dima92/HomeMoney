@@ -16,6 +16,8 @@ using Microsoft.Owin.Security.OAuth;
 using Authorization.Core.Models;
 using Authorization.Core.Providers;
 using Authorization.Core.Results;
+using Microsoft.Owin;
+using Newtonsoft.Json;
 
 namespace Authorization.Core.Controllers
 {
@@ -127,7 +129,7 @@ namespace Authorization.Core.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -260,9 +262,9 @@ namespace Authorization.Core.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -338,14 +340,37 @@ namespace Authorization.Core.Controllers
                 return BadRequest(ModelState);
             }
 
+            var token = GetTokenDictionary(model.Email, model.Password);
+
             //if (user.Locking == false)
             //{ // user auth failed
             //    ModelState.AddModelError("errorLogin", "Данный ресурс для вас заблокирован по решению органов государственной власти!!!");
             //    return BadRequest(ModelState);
             //}
-            await SignInAsync(user, true);
-            user.IsRegisrer = true;
-            return Ok(user);
+            return Ok(token);
+        }
+
+        // получение токена
+        static Dictionary<string, string> GetTokenDictionary(string userName, string password)
+        {
+            var pairs = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>( "grant_type", "password" ),
+                new KeyValuePair<string, string>( "username", userName ),
+                new KeyValuePair<string, string> ( "Password", password )
+            };
+            var content = new FormUrlEncodedContent(pairs);
+
+            using (var client = new HttpClient())
+            {
+                var response =
+                    client.PostAsync("http://localhost:1669/" + "/Token", content).Result;
+                var result = response.Content.ReadAsStringAsync().Result;
+                // Десериализация полученного JSON-объекта
+                Dictionary<string, string> tokenDictionary =
+                    JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+                return tokenDictionary;
+            }
         }
 
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
@@ -366,18 +391,20 @@ namespace Authorization.Core.Controllers
             {
                 return BadRequest(ModelState);
             }
-           
-            ApplicationUser user = new ApplicationUser() { Name = model.Name, Email = model.email,UserName = model.Name};
-          
+
+            ApplicationUser user = new ApplicationUser() { Name = model.Name, Email = model.email, UserName = model.email };
+
             IdentityResult result = await UserManager.CreateAsync(user, model.password);
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
+            // если создание прошло успешно, то добавляем роль пользователя
+            await UserManager.AddToRoleAsync(user.Id, "user");
+            var token = GetTokenDictionary(model.email, model.password);
 
-            user.IsRegisrer = true;
-            return Ok(user);
+            return Ok(token);
         }
 
         // POST api/Account/RegisterExternal
@@ -408,7 +435,7 @@ namespace Authorization.Core.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

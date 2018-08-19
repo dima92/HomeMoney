@@ -35,7 +35,9 @@ namespace Authorization.Core
             PublicClientId = "self";
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
+                // устанавливает URL, по которому клиент будет получать токен
                 TokenEndpointPath = new PathString("/Token"),
+                // указывает на вышеопределенный провайдер авторизации
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
