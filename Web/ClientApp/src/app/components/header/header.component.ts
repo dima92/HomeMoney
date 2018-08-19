@@ -6,7 +6,7 @@ import { AuthService } from "../../services/auth.service";
 
 
 @Component({
-  selector: 'wfm-header',
+  selector: 'app-header',
   templateUrl: './header.component.html'
 })
 
