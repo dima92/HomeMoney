@@ -18,6 +18,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { AuthService } from "./services/auth.service"
 import { UsersService } from "./services/users.service"
 
+import { WebStorageModule } from 'ngx-store';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { UsersService } from "./services/users.service"
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    WebStorageModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

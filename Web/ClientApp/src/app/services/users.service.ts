@@ -33,4 +33,12 @@ export class UsersService {
       .pipe(map(((httpResponse: any) => httpResponse)));
   }
 
+  getResurs(token: string) {
+    let model = token;
+    debugger;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    const options = { headers: headers };
+    return this.http.post(this.autorizUrl + 'api/Account/Register', model, options)
+      .pipe(map(((httpResponse: any) => httpResponse)));
+  }
 }
