@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\app-routing.module.ts" />
     <None Remove="ClientApp\src\app\auth\login\login.component.js" />
     <None Remove="ClientApp\src\app\auth\login\login.component.js" />
     <None Remove="ClientApp\src\app\auth\login\login.component.js.map" />
@@ -33,11 +34,13 @@
     <None Remove="ClientApp\src\app\auth\registration\registration.component.js.map" />
     <None Remove="ClientApp\src\app\auth\registration\registration.component.js.map" />
     <None Remove="ClientApp\src\app\components\header\header.component.ts" />
+    <None Remove="ClientApp\src\app\directives\dropdown.directive.ts" />
     <None Remove="ClientApp\src\app\models\bill.model.ts" />
     <None Remove="ClientApp\src\app\models\category.model.ts" />
     <None Remove="ClientApp\src\app\models\event.model.ts" />
     <None Remove="ClientApp\src\app\models\message.ts" />
     <None Remove="ClientApp\src\app\models\user.model.ts" />
+    <None Remove="ClientApp\src\app\system.component.ts" />
     <None Remove="webpack.config.js" />
   </ItemGroup>
 
@@ -50,7 +53,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\header\header.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\directives\dropdown.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\system.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\bill.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\category.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\event.model.ts" />

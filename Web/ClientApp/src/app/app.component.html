@@ -1,7 +1,15 @@
 <div class='container-fluid'>
   <div class='row'>
     <div class='col-sm-3'>
-      <app-nav-menu></app-nav-menu>
+      <div class="main-wrapper">
+       
+          <app-header></app-header>
+         <article class="content dashboard-page">
+          </article>
+        
+      </div>
+
+      <app-sidebar></app-sidebar>
     </div>
     <div class='col-sm-9 body-content'>
       <router-outlet></router-outlet>

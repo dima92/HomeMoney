@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit() {
-    debugger;
     this.message = new Message('danger', '');
 
     this.route.queryParams
