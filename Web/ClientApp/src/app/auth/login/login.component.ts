@@ -6,6 +6,7 @@ import { UsersService } from '../../services/users.service';
 import { User } from '../../models/user.model';
 import { Message } from '../../models/message';
 import { AuthService } from '../../services/auth.service';
+import { CookieStorage, LocalStorage, SessionStorage, WebstorableArray } from 'ngx-store';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   message: Message;
+  @LocalStorage("localStorageToken") acsestoken : string = '';
 
   constructor(private usersService: UsersService,
     private authService: AuthService,
@@ -26,6 +28,8 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit() {
+    debugger;
+
     this.message = new Message('danger', '');
 
     this.route.queryParams
@@ -56,11 +60,13 @@ export class LoginComponent implements OnInit {
     const formData = this.form.value;
 
     this.usersService.getUserByEmail(formData)
-      .subscribe((user: any) => {
-          if (user.IsRegisrer) {
+      .subscribe((toren: any) => {
+          debugger;
+        if (toren !== null) {
+          this.acsestoken = toren.access_token;
             this.router.navigate(['']);
             // this.showMessage({
-            alert(user.Name + ' вы успешно авторизованы :)');
+           // alert(user.Name + ' вы успешно авторизованы :)');
             //  type: 'danger'
             // });
           }
@@ -93,6 +99,21 @@ export class LoginComponent implements OnInit {
           
         });
 
+  }
+
+  testClick() {
+    let token = "";
+    this.usersService.getResurs(token)
+      .subscribe((toren: any) => {
+          debugger;      
+        },
+        error => {
+          alert(error.error.Message);
+          for (var i = 0; i < error.error.ModelState.errorLogin.length; i++) {
+            alert(error.error.ModelState.errorLogin[i]);
+          }
+
+        });
   }
 
 }
