@@ -4,16 +4,20 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Authorization.Core.Controllers
 {
+    // CORS
+    [EnableCors(origins: "https://localhost:44346", headers: "*", methods: "*", SupportsCredentials = true)]
     [Authorize]
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public IHttpActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok("test");
         }
 
         // GET api/values/5

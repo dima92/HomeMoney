@@ -102,7 +102,8 @@ export class LoginComponent implements OnInit {
   }
 
   testClick() {
-    let token = "";
+    debugger;
+    let token = this.acsestoken;
     this.usersService.getResurs(token)
       .subscribe((toren: any) => {
           debugger;      
