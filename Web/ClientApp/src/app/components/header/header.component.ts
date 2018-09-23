@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { User } from "../../models/user.model";
 import { AuthService } from "../../services/auth.service";
+import { CookieStorage, LocalStorage, SessionStorage, WebstorableArray } from 'ngx-store';
 
 
 @Component({
@@ -13,14 +14,21 @@ import { AuthService } from "../../services/auth.service";
 export class HeaderComponent implements OnInit {
 
   date: Date = new Date();
-  user: User;
+  user: any;
+  @LocalStorage({ key: 'user' }) userName: string;
 
   constructor(private authService: AuthService,
     private router: Router) {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.user = this.userName;
+    if (this.user === null || this.user === undefined) {
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate(['/main']);
+    }
+    //this.user = JSON.parse(window.localStorage.getItem('user'));
   }
 
   onLogout() {

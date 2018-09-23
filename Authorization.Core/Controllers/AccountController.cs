@@ -340,7 +340,7 @@ namespace Authorization.Core.Controllers
                 return BadRequest(ModelState);
             }
 
-            var token = GetTokenDictionary(model.Email, model.Password);
+            Dictionary<string, string> token = GetTokenDictionary(model.Email, model.Password,user.Name);
 
             //if (user.Locking == false)
             //{ // user auth failed
@@ -351,13 +351,13 @@ namespace Authorization.Core.Controllers
         }
 
         // получение токена
-        static Dictionary<string, string> GetTokenDictionary(string userName, string password)
+        static Dictionary<string, string> GetTokenDictionary( string userEmail, string password, string userName)
         {
             var pairs = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>( "grant_type", "password" ),
-                new KeyValuePair<string, string>( "username", userName ),
-                new KeyValuePair<string, string> ( "Password", password )
+                new KeyValuePair<string, string>( "username", userEmail ),
+                new KeyValuePair<string, string> ( "Password", password ),
             };
             var content = new FormUrlEncodedContent(pairs);
 
@@ -369,6 +369,7 @@ namespace Authorization.Core.Controllers
                 // Десериализация полученного JSON-объекта
                 Dictionary<string, string> tokenDictionary =
                     JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+                tokenDictionary.Add("Name", userName);
                 return tokenDictionary;
             }
         }
@@ -402,7 +403,7 @@ namespace Authorization.Core.Controllers
             }
             // если создание прошло успешно, то добавляем роль пользователя
             await UserManager.AddToRoleAsync(user.Id, "user");
-            var token = GetTokenDictionary(model.email, model.password);
+            var token = GetTokenDictionary(model.email, model.password,user.Name);
 
             return Ok(token);
         }

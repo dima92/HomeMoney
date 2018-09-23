@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { UsersService } from '../../services/users.service';
-import { User } from '../../models/user.model';
 import { Message } from '../../models/message';
 import { AuthService } from '../../services/auth.service';
 import { CookieStorage, LocalStorage, SessionStorage, WebstorableArray } from 'ngx-store';
@@ -17,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   message: Message;
-  @LocalStorage("localStorageToken") acsestoken : string = '';
+  @LocalStorage("localStorageToken") acsestoken: string = '';
+  @LocalStorage("user") user: string = '';
 
   constructor(private usersService: UsersService,
     private authService: AuthService,
@@ -60,36 +60,14 @@ export class LoginComponent implements OnInit {
     const formData = this.form.value;
 
     this.usersService.getUserByEmail(formData)
-      .subscribe((toren: any) => {
+      .subscribe((token: any) => {
           debugger;
-        if (toren !== null) {
-          this.acsestoken = toren.access_token;
-            this.router.navigate(['']);
-            // this.showMessage({
-           // alert(user.Name + ' вы успешно авторизованы :)');
-            //  type: 'danger'
-            // });
+        if (token !== null) {
+          this.acsestoken = token.access_token;
+          this.user = token.Name;
+            this.router.navigate(['main']);
           }
 
-
-          //if (user) {
-          //  if (user.password === formData.password) {
-          //    this.message.text = '';
-          //    window.localStorage.setItem('user', JSON.stringify(user));
-          //    this.authService.login();
-          //    // this.router.navigate(['']);
-          //  } else {
-          //    this.showMessage({
-          //      text: 'Пароль не верный',
-          //      type: 'danger'
-          //    });
-          //  }
-          //} else {
-          //  this.showMessage({
-          //    text: 'Такого пользователя не существует',
-          //    type: 'danger'
-          //  });
-          //}
         },
         error => {
           alert(error.error.Message);

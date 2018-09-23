@@ -13,6 +13,7 @@ import { LoginComponent } from "./auth/login/login.component"
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { LoaderComponent } from "./components/loader/loader.component";
 import { NotFoundComponent } from "./components/not-found/NotFoundComponent.component";
+import { MainPageComponent} from "./components/main-page/main-page.component";
 //import { SystemComponent } from './system.component';
 import { HeaderComponent } from "./components/header/header.component";
 
@@ -38,7 +39,8 @@ import { AppRoutingModule } from './app-routing.module';
     NotFoundComponent,
     //SystemComponent,
     HeaderComponent,
-    DropdownDirective
+    DropdownDirective,
+    MainPageComponent
   
   ],
   imports: [
