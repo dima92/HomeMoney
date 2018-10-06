@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -56,8 +55,6 @@ namespace Web
 
             app.UseSpa(spa =>
             {
-               
-
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
@@ -65,7 +62,6 @@ namespace Web
 
                 if (env.IsDevelopment())
                 {
-                    spa.Options.StartupTimeout = new TimeSpan(days: 0, hours: 0, minutes: 1, seconds: 0);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
