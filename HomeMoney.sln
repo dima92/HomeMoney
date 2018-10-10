@@ -4,13 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authorization.Core", "Authorization.Core\Authorization.Core.csproj", "{E08D3111-8D8F-44A4-89C4-A344CC447D8D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{DFBE9F80-5FBC-4AB1-BB50-2C42A0A2B9A2} = {DFBE9F80-5FBC-4AB1-BB50-2C42A0A2B9A2}
-	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{DFBE9F80-5FBC-4AB1-BB50-2C42A0A2B9A2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppAngular", "WebAppAngular\WebAppAngular.csproj", "{7977AAB3-BCEB-481F-974E-914895CE71F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppAngular", "WebAppAngular\WebAppAngular.csproj", "{7977AAB3-BCEB-481F-974E-914895CE71F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +17,6 @@ Global
 		{E08D3111-8D8F-44A4-89C4-A344CC447D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E08D3111-8D8F-44A4-89C4-A344CC447D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E08D3111-8D8F-44A4-89C4-A344CC447D8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFBE9F80-5FBC-4AB1-BB50-2C42A0A2B9A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFBE9F80-5FBC-4AB1-BB50-2C42A0A2B9A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFBE9F80-5FBC-4AB1-BB50-2C42A0A2B9A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFBE9F80-5FBC-4AB1-BB50-2C42A0A2B9A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7977AAB3-BCEB-481F-974E-914895CE71F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7977AAB3-BCEB-481F-974E-914895CE71F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7977AAB3-BCEB-481F-974E-914895CE71F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
