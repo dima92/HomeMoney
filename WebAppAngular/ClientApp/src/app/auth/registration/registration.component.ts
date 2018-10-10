@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../models/user.model';
+import { CookieStorage, LocalStorage, SessionStorage, WebstorableArray } from 'ngx-store';
 
 @Component({
   selector: 'app-registration',
@@ -17,6 +18,8 @@ export class RegistrationComponent implements OnInit {
     private router: Router) {
   }
 
+  @LocalStorage("localStorageToken") acsestoken: string = '';
+  @LocalStorage("user") user: string = '';
  
 
   ngOnInit() {
@@ -34,30 +37,23 @@ export class RegistrationComponent implements OnInit {
     const user = new User(email, password, name);
 
     this.usersService.register(user)
-      .subscribe((data) => {
+      .subscribe((token: any) => {
           debugger;
-          if (data.IsRegisrer) {
-            this.router.navigate(['']);
-            // this.showMessage({
-            // this.router.navigate([''];
-            //alert(data.Name + ' вы успешно зарегистрированы :)');
-            //  type: 'danger'
-            // });
-          }
-          this.router.navigate([''], {
-            queryParams: {
-              nowCanLogin: true
-            }
-          });
-        },
-      error => {
-        debugger;
-          alert(error.error.Message);
-        for (var i = 0; i < error.error.ModelState.error.length; i++) {
-          alert(error.error.ModelState.error[i]);
-          }
+        if (token !== null) {
+          this.acsestoken = token.access_token;
+          this.user = token.Name;
+          this.router.navigate(['main']);
+        }
 
-        });
+      },
+      error => {
+        alert(error.error.Message);
+        for (var i = 0; i < error.error.ModelState.errorLogin.length; i++) {
+          alert(error.error.ModelState.errorLogin[i]);
+        }
+
+      });
+
   }
 
   forbiddenEmails(control: FormControl): Promise<any> {

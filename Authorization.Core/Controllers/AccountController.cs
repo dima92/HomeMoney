@@ -22,8 +22,8 @@ using Newtonsoft.Json;
 namespace Authorization.Core.Controllers
 {
     // CORS
-    [EnableCors(origins: "http://localhost:26756/", headers: "*", methods: "*", SupportsCredentials = true)]
-    [Authorize]
+    [EnableCors(origins: "http://localhost:26756", headers: "*", methods: "*", SupportsCredentials = true)]
+   // [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
@@ -384,7 +384,7 @@ namespace Authorization.Core.Controllers
         }
 
         // POST api/Account/Register
-        [AllowAnonymous]
+       // [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
@@ -402,7 +402,7 @@ namespace Authorization.Core.Controllers
                 return GetErrorResult(result);
             }
             // если создание прошло успешно, то добавляем роль пользователя
-            await UserManager.AddToRoleAsync(user.Id, "user");
+            await UserManager.AddToRoleAsync(user.Id, "admin");
             var token = GetTokenDictionary(model.email, model.password,user.Name);
 
             return Ok(token);

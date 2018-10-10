@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from "../services/auth.service";
-import { CookieStorage, LocalStorage, SessionStorage, WebstorableArray } from 'ngx-store';
+import { LocalStorage } from 'ngx-store';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { CookieStorage, LocalStorage, SessionStorage, WebstorableArray } from 'n
 export class HeaderComponent implements OnInit {
 
   date: Date = new Date();
-  user: any;
+  user: "";
   @LocalStorage({ key: 'user' }) userName: string;
 
   constructor(private authService: AuthService,
