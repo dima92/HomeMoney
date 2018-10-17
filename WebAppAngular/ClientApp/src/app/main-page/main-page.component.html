@@ -1,3 +1,20 @@
 <div class="jumbotron jumbotron-fluid">
   <h2 class="text-lg-center font-italic">Добро пожаловать в домашнюю бухгалтерию</h2>
 </div>
+<kendo-grid [data]="gridData" [height]="410">
+  <kendo-grid-column field="Name" title="Name" width="250">
+    {{Name}}
+  </kendo-grid-column>
+  <kendo-grid-column field="Cat" title="Category"width="250">
+    {{Cat}}
+  </kendo-grid-column>
+  <!--<kendo-grid-column field="UnitPrice" title="Price" width="80">
+  </kendo-grid-column>
+  <kendo-grid-column field="UnitsInStock" title="In stock" width="80">
+  </kendo-grid-column>-->
+  <!--<kendo-grid-column field="Discontinued" title="Discontinued" width="120">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <input type="checkbox" [checked]="dataItem.Discontinued" disabled />
+    </ng-template>-->
+  <!--</kendo-grid-column>-->
+</kendo-grid>

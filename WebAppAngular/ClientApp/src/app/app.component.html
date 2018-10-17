@@ -12,10 +12,18 @@
 
 <div class="main-wrapper">
   <div class="app">
-    <app-header></app-header>
-    <app-sidebar></app-sidebar>
-    <article class="content dashboard-page">
-      <router-outlet></router-outlet>
-    </article>
+    <div *ngIf="isAutoriz; else loggedOut">
+      <app-header></app-header>
+      <app-sidebar></app-sidebar>
+      <article class="content dashboard-page">
+        <router-outlet></router-outlet>
+      </article>
+    </div>
   </div>
+
+  <ng-template #loggedOut>
+    <div style="width: 43%;margin-top: 9%; margin-left: 14%;">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
 </div>

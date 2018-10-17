@@ -8,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
+  public testMas = [{ Name: "www", Cat: 22 }, { Name: "eee", Cat: 2223 }];
   constructor() { }
+
+  public gridData: any[] = this.testMas;
+
+
 
   ngOnInit() {
   }

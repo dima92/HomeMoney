@@ -22,6 +22,8 @@ import { UsersService } from "./services/users.service";
 import { WebStorageModule } from 'ngx-store';
 import { DropdownDirective } from './directives/dropdown.directive';
 
+import { GridModule } from '@progress/kendo-angular-grid';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +44,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
     FormsModule,
     ReactiveFormsModule,
     WebStorageModule,
+    GridModule,
     
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
