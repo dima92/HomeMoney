@@ -1,12 +1,12 @@
 <div class="header">
   <div class="header-block header-block-search">
-    {{ date | date:'dd.MM.yyyy HH:mm' }}
+    {{ date | date:'dd.MM.yyyy' }}
   </div>
   <div class="header-block header-block-nav">
     <div *ngIf="user!=''">
       <ul class="nav-profile">
-        <li class="profile dropdown">
-          <a href="" class="nav-link dropdown-toggle" role="button">
+        <li class="profile dropdown" appDropdown>
+          <a class="nav-link dropdown-toggle" role="button">
 
             <span class="name">
               Здравствуйте, {{user}}
@@ -27,3 +27,4 @@
       </ul>
     </div>
   </div>
+</div>

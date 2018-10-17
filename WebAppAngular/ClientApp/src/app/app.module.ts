@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -14,13 +14,13 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NotFoundComponent } from "./not-found/NotFoundComponent.component";
 import { LoginComponent } from "./auth/login/login.component"
 import { RegistrationComponent } from './auth/registration/registration.component';
-
-import { AuthService } from "./services/auth.service"
-import { UsersService } from "./services/users.service"
-
-
 import { HeaderComponent } from "./header/header.component";
+
+import { AuthService } from "./services/auth.service";
+import { UsersService } from "./services/users.service";
+
 import { WebStorageModule } from 'ngx-store';
+import { DropdownDirective } from './directives/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { WebStorageModule } from 'ngx-store';
     HeaderComponent,
     NotFoundComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,6 +42,7 @@ import { WebStorageModule } from 'ngx-store';
     FormsModule,
     ReactiveFormsModule,
     WebStorageModule,
+    
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: "registration", component: RegistrationComponent },
@@ -51,7 +53,7 @@ import { WebStorageModule } from 'ngx-store';
     ])
   ],
   providers: [
-     AuthService,
+    AuthService,
     UsersService],
   bootstrap: [AppComponent]
 })

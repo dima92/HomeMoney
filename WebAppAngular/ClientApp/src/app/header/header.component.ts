@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { AuthService } from "../services/auth.service";
 import { LocalStorage } from 'ngx-store';
+import { AuthService } from "../services/auth.service";
+
+
 
 
 @Component({
@@ -13,7 +14,7 @@ import { LocalStorage } from 'ngx-store';
 export class HeaderComponent implements OnInit {
 
   date: Date = new Date();
-  user: "";
+  user: any;
   @LocalStorage({ key: 'user' }) userName: string;
 
   constructor(private authService: AuthService,
@@ -27,12 +28,12 @@ export class HeaderComponent implements OnInit {
     } else {
       this.router.navigate(['/main']);
     }
-    //this.user = JSON.parse(window.localStorage.getItem('user'));
+   
   }
 
   onLogout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
+    this.authService.logout; 
+    this.router.navigate(['/']);
   }
 
 }
