@@ -16,7 +16,6 @@ using Microsoft.Owin.Security.OAuth;
 using Authorization.Core.Models;
 using Authorization.Core.Providers;
 using Authorization.Core.Results;
-using Microsoft.Owin;
 using Newtonsoft.Json;
 
 namespace Authorization.Core.Controllers

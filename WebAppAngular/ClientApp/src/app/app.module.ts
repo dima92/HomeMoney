@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,6 +24,18 @@ import { WebStorageModule } from 'ngx-store';
 import { DropdownDirective } from './directives/dropdown.directive';
 
 import { GridModule } from '@progress/kendo-angular-grid';
+import { BillPageComponent } from './bill-page/bill-page.component';
+import { BillCardComponent } from './bill-page/bill-card/bill-card.component';
+import { CurrencyCardComponent } from './bill-page/currency-card/currency-card.component';
+import { RecordsPageComponent } from './records-page/records-page.component';
+import { AddCategoryComponent } from './records-page/add-category/add-category.component';
+import { AddEventComponent } from './records-page/add-event/add-event.component';
+import { EditCategoryComponent } from './records-page/edit-category/edit-category.component';
+import { BillService } from './services/bill.service';
+import { CategoriesService } from './services/categories.service';
+import { EventsService } from './services/events.service';
+import { LoaderComponent } from './loader/loader.component';
+import { MomentPipe } from './pipes/moment.pipe';
 
 @NgModule({
   declarations: [
@@ -36,11 +49,21 @@ import { GridModule } from '@progress/kendo-angular-grid';
     NotFoundComponent,
     LoginComponent,
     RegistrationComponent,
-    DropdownDirective
+    BillPageComponent,
+    BillCardComponent,
+    CurrencyCardComponent,
+    RecordsPageComponent,
+    AddCategoryComponent,
+    AddEventComponent,
+    EditCategoryComponent,
+    LoaderComponent,
+    DropdownDirective,
+    MomentPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     WebStorageModule,
@@ -52,12 +75,17 @@ import { GridModule } from '@progress/kendo-angular-grid';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: "main", component: MainPageComponent },
+      { path: "bill", component: BillPageComponent },
+      { path: "records", component: RecordsPageComponent },
       { path: "**", component: NotFoundComponent }
     ])
   ],
   providers: [
     AuthService,
-    UsersService],
+    UsersService,
+    BillService,
+    CategoriesService,
+    EventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
