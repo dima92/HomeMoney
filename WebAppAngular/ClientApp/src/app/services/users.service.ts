@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 import { User } from '../models/user.model';
@@ -9,6 +9,9 @@ export class UsersService {
   private autorizUrl: string;
   baseUrl: string;
   utorizUrl: string;
+  isAutoriz = false; // парамент аутиттефикации в системе
+  onClick: EventEmitter<boolean> = new EventEmitter();
+
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, @Inject('AUTORIZ_URL') autorizUrl: string) {
     this.autorizUrl = autorizUrl;
@@ -16,6 +19,7 @@ export class UsersService {
   }
 
   getUserByEmail(formData: any) {
+
     let model = formData;
     debugger;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
@@ -31,6 +35,13 @@ export class UsersService {
     const options = { headers: headers };
     return this.http.post(this.autorizUrl + 'api/Account/Register',model, options)
       .pipe(map(((httpResponse: any) => httpResponse)));
+  }
+
+  // меняем статус авторизации
+  updateStatusAus(status : boolean) {
+    this.isAutoriz = status;
+    this.onClick.emit(this.isAutoriz);
+    return this.isAutoriz;
   }
 
   //getResurs(token: string) {

@@ -13,11 +13,11 @@ import { CookieStorage, LocalStorage, SessionStorage, WebstorableArray } from 'n
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   form: FormGroup;
   message: Message;
   @LocalStorage("localStorageToken") acsestoken: string = '';
   @LocalStorage("user") user: string = '';
+  isAutoriz = false;
 
   constructor(private usersService: UsersService,
     private authService: AuthService,
@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     debugger;
+    this.isAutoriz = this.usersService.isAutoriz;
+    this.isAutoriz ? this.router.navigate(['main']) : this.router.navigate(['']);
 
     this.message = new Message('danger', '');
 
@@ -66,6 +68,8 @@ export class LoginComponent implements OnInit {
         if (token !== null) {
           this.acsestoken = token.access_token;
           this.user = token.Name;
+          this.isAutoriz = true;
+          this.usersService.updateStatusAus(this.isAutoriz);
             this.router.navigate(['main']);
           }
 
@@ -74,10 +78,8 @@ export class LoginComponent implements OnInit {
           alert(error.error.Message);
           for (var i = 0; i < error.error.ModelState.errorLogin.length; i++) {
             alert(error.error.ModelState.errorLogin[i]);
-          }
-          
+          }         
         });
-
   }
 
   testClick() {

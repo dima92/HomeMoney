@@ -22,7 +22,7 @@ using Newtonsoft.Json;
 namespace Authorization.Core.Controllers
 {
     // CORS
-    [EnableCors(origins: "http://localhost:26756", headers: "*", methods: "*", SupportsCredentials = true)]
+    [EnableCors(origins: "http://localhost:50565", headers: "*", methods: "*", SupportsCredentials = true)]
    // [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

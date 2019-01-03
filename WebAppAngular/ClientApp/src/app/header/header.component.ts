@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorage } from 'ngx-store';
 import { AuthService } from "../services/auth.service";
-
-
-
+import { UsersService } from "../services/users.service";
 
 @Component({
   selector: 'app-header',
@@ -18,7 +16,8 @@ export class HeaderComponent implements OnInit {
   @LocalStorage({ key: 'user' }) userName: string;
 
   constructor(private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private usersService : UsersService) {
   }
 
   ngOnInit() {
@@ -32,8 +31,12 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
-    this.authService.logout; 
-    this.router.navigate(['/']);
+    debugger;
+    delete this.userName[''];
+    localStorage.removeItem("ngx_user");
+    localStorage.removeItem("ngx_localStorageToken");
+    this.usersService.updateStatusAus(false);
+    this.router.navigate(['']);
   }
 
 }
