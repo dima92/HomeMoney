@@ -400,6 +400,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -417,12 +418,18 @@
     <Compile Include="Migrations\201808111823435_DataMigraton.Designer.cs">
       <DependentUpon>201808111823435_DataMigraton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901052215274_addCategory.cs" />
+    <Compile Include="Migrations\201901052215274_addCategory.Designer.cs">
+      <DependentUpon>201901052215274_addCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repository\CategoryBll.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -493,6 +500,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808111823435_DataMigraton.resx">
       <DependentUpon>201808111823435_DataMigraton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901052215274_addCategory.resx">
+      <DependentUpon>201901052215274_addCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -20,6 +20,7 @@
       "styles": [
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/@progress/kendo-theme-default/dist/all.css",
         "assets/theme.css",
         "assets/vendor.css"
       ],
@@ -57,7 +58,12 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {},
+    "component": {
+      
+        "viewEncapsulation": "Emulated",
+        "changeDetection": "Default"
+      
+    },
     "build": {
       "progress": true
     }

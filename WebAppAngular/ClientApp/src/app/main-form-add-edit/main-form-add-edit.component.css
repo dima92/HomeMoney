@@ -1,0 +1,16 @@
+
+.main-form-input input {
+  width: 353px !important;
+}
+
+.comboBox-style {
+  width: 353px !important;
+  max-height: none;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+}
