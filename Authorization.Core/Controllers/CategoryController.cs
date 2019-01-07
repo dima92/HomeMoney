@@ -32,9 +32,9 @@ namespace Authorization.Core.Controllers
 
         [Route("getAllIncomeExpenses")]
         [HttpGet]
-        public IHttpActionResult GetAllIncomeExpenses(bool? status)
+        public IHttpActionResult GetAllIncomeExpenses(bool? status ,string startDate, string endDate)
         {
-            List<IncomeExpenses> result = _categoryBll.GetAllIncomeExpenses(status);
+            List<IncomeExpenses> result = _categoryBll.GetAllIncomeExpenses(status ,startDate,endDate);
             return Ok(result);
         }
     }

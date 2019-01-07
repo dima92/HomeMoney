@@ -20,7 +20,9 @@ export class MainPageComponent implements OnInit {
   status: boolean;
   public gridData: Array<any> = [];
   loading: boolean = false;
-  openModalWindowCategory : boolean = false;
+  openModalWindowCategory: boolean = false;
+  startDate: Date = new Date("01.01.2019");
+  endDate: Date = new Date();
 
   constructor(private categoryService: CategoryService) {
 
@@ -79,7 +81,7 @@ export class MainPageComponent implements OnInit {
 
   public getAllIncomeExpenses() {
     this.loading = true;
-    this.categoryService.getAllIncomeExpenses(null)
+    this.categoryService.getAllIncomeExpenses(null, this.startDate,this.endDate)
       .subscribe((result: any) => {
           for (var i = 0; i < result.length; i++) {
             result[i].ProfitType = result[i].Category.ProfitType ? "+ Приход" : " - Расход";
@@ -98,9 +100,16 @@ export class MainPageComponent implements OnInit {
         });
   }
 
-
   ngOnInit() {
     debugger;
+    this.getAllIncomeExpenses();
+  }
+
+  onChangedStartDate() {
+    this.getAllIncomeExpenses();
+  }
+
+  onChangedEndDate() {
     this.getAllIncomeExpenses();
   }
 }

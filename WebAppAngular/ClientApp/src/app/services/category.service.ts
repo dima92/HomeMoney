@@ -31,10 +31,13 @@ export class CategoryService {
       .pipe(map(((httpResponse: any) => httpResponse)));
   }
 
-  getAllIncomeExpenses(status: any) {
+  getAllIncomeExpenses(status: any, startDate: Date, endDate: Date) {
+    let startDateString = startDate.toLocaleDateString();
+    let endDateString = endDate.toLocaleDateString();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     const options = { headers: headers };
-    return this.http.get(this.autorizUrl + "/api/categoty/getAllIncomeExpenses?status=" + status, options)
+    return this.http.get(this.autorizUrl + "/api/categoty/getAllIncomeExpenses?status="
+      + status + "&startDate=" + startDateString +"&endDate=" + endDateString, options)
       .pipe(map(((httpResponse: any) => httpResponse)));
   }
 }

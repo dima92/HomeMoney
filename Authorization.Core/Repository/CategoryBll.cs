@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using Authorization.Core.Migrations;
 
 namespace Authorization.Core.Repository
 {
@@ -57,9 +55,12 @@ namespace Authorization.Core.Repository
             _db.SaveChanges();
         }
 
-        public List<IncomeExpenses> GetAllIncomeExpenses(bool? status)
+        public List<IncomeExpenses> GetAllIncomeExpenses(bool? status, string startDate, string endDate)
         {
-            var result = _db.IncomeExpensese.Where(w => w.Category.ProfitType != status).ToList();
+            var startDat = Convert.ToDateTime(startDate);
+            var endDat = Convert.ToDateTime(endDate);
+            var result = _db.IncomeExpensese.Where(w => w.Category.ProfitType != status
+            && w.DateСreate >= startDat  && w.DateСreate <= endDat ).ToList();
             foreach (var expensese in result)
             {
                 expensese.ApplicationUser = _db.Users.Find(expensese.ApplicationUser_Id1);

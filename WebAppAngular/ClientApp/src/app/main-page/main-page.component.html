@@ -1,9 +1,21 @@
 <div class="example-wrapper" style="margin-top: -44px;">
-  <kendo-dropdownbutton [data]="data" [popupSettings]="{popupClass: popupClass, animate: true}">
-    <button class="btn btn-success btn-sm">Добавить данные</button>
-  </kendo-dropdownbutton>
+  <div class="pull-left">
+    <kendo-dropdownbutton [data]="data" [popupSettings]="{popupClass: popupClass, animate: true}">
+      <button class="btn btn-success btn-sm">Добавить данные</button>
+    </kendo-dropdownbutton>
+  </div>
+  <div class="pull-right" style="padding-right: 30%">
+  <div class="example-wrapper pull-left">
+    <label>Период с</label>
+    <kendo-datepicker  (valueChange)="onChangedStartDate()" [(value)]="startDate"></kendo-datepicker>
+  </div>
+    <div class="example-wrapper pull-left">
+      <label>&nbsp;&nbsp; по &nbsp;</label>
+      <kendo-datepicker (valueChange)="onChangedEndDate()" [(value)]="endDate"></kendo-datepicker>
+    </div>
+  </div>
 </div>
-<div>
+<div style="width: 100%;display: flex">
   <kendo-grid [kendoGridGroupBinding]="gridData" #grid
               [height]="410"
               [loading]="loading"
