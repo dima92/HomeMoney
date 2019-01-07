@@ -26,6 +26,7 @@ namespace Authorization.Core.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Category> Category { get; set; }
+        public DbSet<IncomeExpenses> IncomeExpensese { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -370,6 +370,7 @@ namespace Authorization.Core.Controllers
                 Dictionary<string, string> tokenDictionary =
                     JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
                 tokenDictionary.Add("Name", userName);
+                tokenDictionary.Add("userEmail", userEmail);
                 return tokenDictionary;
             }
         }

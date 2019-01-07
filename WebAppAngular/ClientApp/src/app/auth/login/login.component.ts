@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   message: Message;
   @LocalStorage("localStorageToken") acsestoken: string = '';
   @LocalStorage("user") user: string = '';
+  @LocalStorage("email") email: string = '';
   isAutoriz = false;
 
   constructor(private usersService: UsersService,
@@ -68,6 +69,7 @@ export class LoginComponent implements OnInit {
         if (token !== null) {
           this.acsestoken = token.access_token;
           this.user = token.Name;
+          this.email = token.userEmail;
           this.isAutoriz = true;
           this.usersService.updateStatusAus(this.isAutoriz);
             this.router.navigate(['main']);

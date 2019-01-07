@@ -21,5 +21,21 @@ namespace Authorization.Core.Controllers
             List<Category> result = _categoryBll.GetAllCategotys(status);
             return Ok(result);
         }
+
+        [Route("addCategory")]
+        [HttpPost]
+        public IHttpActionResult AddCategory(CategoryDto data)
+        {
+            _categoryBll.AddCategory(data);
+            return Ok(true);
+        }
+
+        [Route("getAllIncomeExpenses")]
+        [HttpGet]
+        public IHttpActionResult GetAllIncomeExpenses(bool? status)
+        {
+            List<IncomeExpenses> result = _categoryBll.GetAllIncomeExpenses(status);
+            return Ok(result);
+        }
     }
 }

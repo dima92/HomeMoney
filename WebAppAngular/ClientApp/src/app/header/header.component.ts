@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     debugger;
     delete this.userName[''];
+    localStorage.removeItem("ngx_email");
     localStorage.removeItem("ngx_user");
     localStorage.removeItem("ngx_localStorageToken");
     this.usersService.updateStatusAus(false);
