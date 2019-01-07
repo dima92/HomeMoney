@@ -1,17 +1,29 @@
 <div class="example-wrapper" style="margin-top: -44px;">
-  <kendo-dropdownbutton [data]="data"  [popupSettings]="{popupClass: popupClass, animate: true}">
-    <button class="btn btn-success btn-sm">Добавить данные</button>  
+  <kendo-dropdownbutton [data]="data" [popupSettings]="{popupClass: popupClass, animate: true}">
+    <button class="btn btn-success btn-sm">Добавить данные</button>
   </kendo-dropdownbutton>
 </div>
 <div>
   <kendo-grid [data]="gridData"
               [height]="410"
-              [loading]="true">
-    <kendo-grid-column field="Name" title="Name" width="250">
-      {{Name}}
+              [loading]="loading">
+    <kendo-grid-column field="ProfitType" title="Операция" width="90">
+      {{ProfitType}}
     </kendo-grid-column>
-    <kendo-grid-column field="Cat" title="Category" width="250">
-      {{Cat}}
+    <kendo-grid-column field="CategoryDescription" title="Категория" width="250">
+      {{CategoryDescription}}
+    </kendo-grid-column>
+    <kendo-grid-column field="CategoryDateCreate" title="Дата" width="100">
+      {{CategoryDateCreate}}
+    </kendo-grid-column>
+    <kendo-grid-column field="Summa" title="Сумма" width="100">
+      {{Summa}}
+    </kendo-grid-column>
+    <kendo-grid-column field="ApplicationUser" title="Добавил" width="250">
+      {{ApplicationUser}}
+    </kendo-grid-column>
+    <kendo-grid-column field="Description" title="Описание">
+      {{Description}}
     </kendo-grid-column>
 
   </kendo-grid>
@@ -19,6 +31,7 @@
 <main-form-add-edit [isNew]="isNew"
                     [model]="model"
                     [status]="status"
+                    (save)="saveCategory($event)"
                     (cancel)="cancel($event)">
 </main-form-add-edit>
 

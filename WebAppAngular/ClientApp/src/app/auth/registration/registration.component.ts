@@ -13,6 +13,7 @@ import { CookieStorage, LocalStorage, SessionStorage, WebstorableArray } from 'n
 export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
+  isAutoriz = false;
 
   constructor(private usersService: UsersService,
     private router: Router) {
@@ -20,6 +21,7 @@ export class RegistrationComponent implements OnInit {
 
   @LocalStorage("localStorageToken") acsestoken: string = '';
   @LocalStorage("user") user: string = '';
+  @LocalStorage("email") email: string = '';
  
 
   ngOnInit() {
@@ -42,6 +44,9 @@ export class RegistrationComponent implements OnInit {
         if (token !== null) {
           this.acsestoken = token.access_token;
           this.user = token.Name;
+          this.email = token.userEmail;
+          this.isAutoriz = true;
+          this.usersService.updateStatusAus(this.isAutoriz);
           this.router.navigate(['main']);
         }
 

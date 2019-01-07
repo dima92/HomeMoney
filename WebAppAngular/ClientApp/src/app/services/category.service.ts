@@ -24,5 +24,18 @@ export class CategoryService {
   }
 
 
+  addCategory(data) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    const options = { headers: headers };
+    return this.http.post(this.autorizUrl + "/api/categoty/addCategory",data, options)
+      .pipe(map(((httpResponse: any) => httpResponse)));
+  }
+
+  getAllIncomeExpenses(status: any) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    const options = { headers: headers };
+    return this.http.get(this.autorizUrl + "/api/categoty/getAllIncomeExpenses?status=" + status, options)
+      .pipe(map(((httpResponse: any) => httpResponse)));
+  }
 }
 

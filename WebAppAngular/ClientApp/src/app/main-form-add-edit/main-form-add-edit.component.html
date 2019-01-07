@@ -29,27 +29,27 @@
           <input class="form-control" type="text" formControlName="Name" />
           <div class="pull-right edit-cfo-valid" [hidden]="editForm.controls.Name.valid || editForm.controls.Name.pristine">*</div>
           <div [hidden]="editForm.controls.Name.valid || editForm.controls.Name.pristine" style="position: absolute; font-size: 13px; margin-left: 150px; color: red" class="has-error">* поле обязательно для заполнения </div>
-          <div align="right" style="margin-top: 20px;">
-            <label for="Description" class="control-label">Описание прихода: &nbsp;</label>
-            <input class="form-control" type="text" formControlName="Description" /><div class="pull-right edit-cfo-valid" [hidden]="editForm.controls.Description.valid || editForm.controls.Description.pristine">*</div>
-            <div [hidden]="editForm.controls.Description.valid || editForm.controls.Description.pristine" style="position:absolute;font-size:13px;margin-left:150px;color: red" class="has-error">* поле обязательно для заполнения</div>
-          </div>
         </div>
         <div align="right" style="margin-top: 20px;">
           <label for="Summa" class="control-label">Сумма прибыли: &nbsp;</label>
           <input class="form-control" type="number" formControlName="Summa" /><div class="pull-right edit-cfo-valid" [hidden]="editForm.controls.Summa.valid || editForm.controls.Summa.pristine">*</div>
           <div [hidden]="editForm.controls.Summa.valid || editForm.controls.Summa.pristine" style="position:absolute;font-size:13px;margin-left:150px;color: red" class="has-error">* поле обязательно для заполнения</div>
         </div>
+        <div align="right" style="margin-top: 20px;">
+          <label for="Description" class="control-label">Описание: &nbsp;</label>
+          <input class="form-control" type="text" formControlName="Description" /><div class="pull-right edit-cfo-valid" [hidden]="editForm.controls.Description.valid || editForm.controls.Description.pristine">*</div>
+          <div [hidden]="editForm.controls.Description.valid || editForm.controls.Description.pristine" style="position:absolute;font-size:13px;margin-left:150px;color: red" class="has-error">* поле обязательно для заполнения</div>
+        </div>
       </div>
     </form>
     <kendo-dialog-actions *ngIf="!openBlockaddCategory;else unset">
-      <button class="k-button k-primary" (click)="onSave($event,'save')">Добавить</button>
+      <button class="k-button k-primary" (click)="onSave($event)">Добавить</button>
       <button class="k-button" (click)="onCancel($event)">Отмена</button>
     </kendo-dialog-actions>
 
     <ng-template #unset>
       <kendo-dialog-actions>
-        <button class="k-button k-primary" [disabled]="!editForm.valid" (click)="onSave($event,'edit')">Добавить</button>
+        <button class="k-button k-primary" [disabled]="!editForm.valid" (click)="onSave($event)">Добавить</button>
         <button class="k-button" (click)="onCancel($event)">Отмена</button>
       </kendo-dialog-actions>
     </ng-template>

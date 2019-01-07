@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angu
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { CategoryService } from "../services/category.service";
+import { LocalStorage } from 'ngx-store';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { CategoryService } from "../services/category.service";
 })
 export class MainFormAddEdit {
   public active = false;
+  @LocalStorage({ key: 'email' }) email: string;
   public editForm: FormGroup = new FormGroup({
     "Id": new FormControl(),
     "Name": new FormControl('', Validators.required),
@@ -19,7 +21,7 @@ export class MainFormAddEdit {
     "Summa": new FormControl('', Validators.required),
   });
   constructor(public router: Router,
-    private categoryService : CategoryService) {
+    private categoryService: CategoryService) {
 
   }
 
@@ -43,11 +45,10 @@ export class MainFormAddEdit {
 
   @Input() //fkag: true - приход , false - расход
   public set status(flag: boolean) {
-    debugger;
     if (flag !== undefined) {
       this.getCategory(flag);
     }
-   
+
   }
 
   @Output() cancel: EventEmitter<any> = new EventEmitter();
@@ -55,12 +56,12 @@ export class MainFormAddEdit {
   @Output() edit: EventEmitter<any> = new EventEmitter();
 
   public onSave(e: any, flag: string): void {
+    debugger;
     e.preventDefault();
-    if (flag === "edit") {
-      this.edit.emit(this.editForm.value);
-    } else {
-      this.save.emit(this.editForm.value);
-    }
+    this.editForm.value.Email = this.email;
+    this.editForm.value.ProfitType = this.isNew;
+    this.editForm.value.SelectCategoryId = this.SelectCategory.Id;
+    this.save.emit(this.editForm.value);
     this.active = false;
   }
 
@@ -80,7 +81,7 @@ export class MainFormAddEdit {
     } else {
       this.openBlockaddCategory = false;
     }
-    
+
   }
 
   public getCategory(status: boolean) {
@@ -96,5 +97,5 @@ export class MainFormAddEdit {
           }
         });
   }
-   
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
+import { CategoryService } from "../services/category.service";
 
 
 @Component({
@@ -16,6 +17,12 @@ export class MainPageComponent implements OnInit {
   animate: false;
   popupClass: string = 'font-arial';
   status: boolean;
+  public gridData: Array<any> = [];
+  loading : boolean = false;
+
+  constructor(private categoryService: CategoryService) {
+
+  }
 
   public add(dataItem: any) {
     this.model = "";
@@ -39,12 +46,46 @@ export class MainPageComponent implements OnInit {
     this.model = undefined;
   }
 
-  public testMas = [{ Name: "www", Cat: 22 }, { Name: "eee", Cat: 2223 }];
-  public gridData: any[] = this.testMas;
+  public saveCategory(data: any) {
+    this.cancel(true);
+    this.categoryService.addCategory(data)
+      .subscribe((result: any) => {
+        alert("Запись успешно добавлена");
+        this.getAllIncomeExpenses();
+        },
+        error => {
+          alert(error.error.Message);
+          for (var i = 0; i < error.error.ModelState.errorLogin.length; i++) {
+            alert(error.error.ModelState.errorLogin[i]);
+          }
+        });
+  }
+  
 
-
+  public getAllIncomeExpenses() {
+    this.loading = true;
+    this.categoryService.getAllIncomeExpenses(null)
+      .subscribe((result: any) => {
+          for (var i = 0; i < result.length; i++) {
+            result[i].ProfitType = result[i].Category.ProfitType ? "+ Приход" : " - Расход";
+            result[i].CategoryDescription = result[i].Category.Description;
+            result[i].CategoryDateCreate = (new Date(result[i].DateСreate)).toLocaleDateString();
+            result[i].ApplicationUser = result[i].ApplicationUser.Name + ' (' + result[i].ApplicationUser.Email + ')';
+          }
+        this.gridData = result;
+        this.loading = false;
+        },
+        error => {
+          alert(error.error.Message);
+          for (var i = 0; i < error.error.ModelState.errorLogin.length; i++) {
+            alert(error.error.ModelState.errorLogin[i]);
+          }
+        });
+  }
 
 
   ngOnInit() {
+    debugger;
+    this.getAllIncomeExpenses();
   }
 }
