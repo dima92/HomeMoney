@@ -334,7 +334,7 @@ namespace Authorization.Core.Controllers
             }
 
             var user = await UserManager.FindAsync(model.Email, model.Password);
-            if (user == null)
+                if (user == null)
             { // user auth failed
                 ModelState.AddModelError("errorLogin", "Invalid email or password");
                 return BadRequest(ModelState);
