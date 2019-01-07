@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
@@ -11,6 +11,7 @@ import { CategoryService } from "../services/category.service";
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
+  @ViewChild('grid')
   public isOpenAddEditCalalogCfoModal: [boolean, string] = [false, ""];
   public isNew: boolean;
   public model: any;
@@ -18,13 +19,26 @@ export class MainPageComponent implements OnInit {
   popupClass: string = 'font-arial';
   status: boolean;
   public gridData: Array<any> = [];
-  loading : boolean = false;
+  loading: boolean = false;
+  openModalWindowCategory : boolean = false;
 
   constructor(private categoryService: CategoryService) {
 
   }
 
+  public state: State = {
+    skip: 0,
+    take: 5,
+
+    // Initial filter descriptor
+    filter: {
+      logic: 'and',
+      filters: [{ field: 'CategoryDescription', operator: 'contains', value: 'Chef' }]
+    }
+  };
+
   public add(dataItem: any) {
+    this.openModalWindowCategory = true;
     this.model = "";
     this.isNew = dataItem;
     this.status = dataItem;
@@ -44,6 +58,7 @@ export class MainPageComponent implements OnInit {
 
   public cancel(e: any) {
     this.model = undefined;
+    this.openModalWindowCategory = false;
   }
 
   public saveCategory(data: any) {

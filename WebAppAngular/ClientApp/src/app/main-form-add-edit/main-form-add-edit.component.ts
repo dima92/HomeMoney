@@ -60,7 +60,9 @@ export class MainFormAddEdit {
     e.preventDefault();
     this.editForm.value.Email = this.email;
     this.editForm.value.ProfitType = this.isNew;
-    this.editForm.value.SelectCategoryId = this.SelectCategory.Id;
+    if (!this.openBlockaddCategory) {
+      this.editForm.value.SelectCategoryId = this.SelectCategory.Id;
+    }  
     this.save.emit(this.editForm.value);
     this.active = false;
   }
@@ -87,7 +89,6 @@ export class MainFormAddEdit {
   public getCategory(status: boolean) {
     this.categoryService.getAllCategotys(status)
       .subscribe((result: any) => {
-        debugger;
         this.Categorys = result;
       },
         error => {

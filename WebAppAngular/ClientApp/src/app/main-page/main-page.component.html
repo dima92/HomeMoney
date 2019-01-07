@@ -4,19 +4,26 @@
   </kendo-dropdownbutton>
 </div>
 <div>
-  <kendo-grid [data]="gridData"
+  <kendo-grid [kendoGridGroupBinding]="gridData" #grid
               [height]="410"
-              [loading]="loading">
-    <kendo-grid-column field="ProfitType" title="Операция" width="90">
+              [loading]="loading"
+              [skip]="state.skip"
+              [sort]="state.sort"
+              [filter]="grid.filter"
+              [sortable]="true"
+              [filterable]="true">
+    <kendo-grid-column field="ProfitType" title="Операция" width="120">
       {{ProfitType}}
     </kendo-grid-column>
     <kendo-grid-column field="CategoryDescription" title="Категория" width="250">
-      {{CategoryDescription}}
+      <ng-template kendoGridCellTemplate let-dataItem style="align-items: center;">
+        {{dataItem.CategoryDescription}}
+      </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="CategoryDateCreate" title="Дата" width="100">
+    <kendo-grid-column field="CategoryDateCreate" title="Дата" width="120">
       {{CategoryDateCreate}}
     </kendo-grid-column>
-    <kendo-grid-column field="Summa" title="Сумма" width="100">
+    <kendo-grid-column field="Summa" title="Сумма" width="120">
       {{Summa}}
     </kendo-grid-column>
     <kendo-grid-column field="ApplicationUser" title="Добавил" width="250">
@@ -28,7 +35,8 @@
 
   </kendo-grid>
 </div>
-<main-form-add-edit [isNew]="isNew"
+<main-form-add-edit *ngIf="openModalWindowCategory"
+                    [isNew]="isNew"
                     [model]="model"
                     [status]="status"
                     (save)="saveCategory($event)"
